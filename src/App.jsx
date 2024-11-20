@@ -1,9 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import NotFoundPage from "./pages/404";
+import { ThemeSwitcher } from "./components/themeSwitcher";
+import NavigationBar from "./components/navigationBar";
+import CopyRight from "./components/copyRight";
 
 export default function App() {
   return (
-    <div className="min-h-screen w-full f">
+    <div className="min-h-screen w-full">
+      <NavigationBar />
       <Routes>
         <Route path="/" element={<h1>hello world</h1>} />
         <Route path="/admin" element={<h1>Admin page</h1>} />
@@ -14,6 +18,8 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
         {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
+      <CopyRight />
+      <ThemeSwitcher />
     </div>
   );
 }
