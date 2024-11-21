@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import NotFoundPage from "./pages/404";
 import { ThemeSwitcher } from "./components/themeSwitcher";
 import NavigationBar from "./components/navigationBar";
@@ -11,9 +11,13 @@ import LoginPage from "./pages/login";
 import SignUpPage from "./pages/signUp";
 
 export default function App() {
+  const location = useLocation();
+  const isAdminSubdomain = location.pathname.startsWith("/admin");
+  const isAuthSubdomain = location.pathname.startsWith("/auth")
+
   return (
     <div className="min-h-screen w-full">
-      <NavigationBar />
+      {isAdminSubdomain || isAuthSubdomain ? null : <NavigationBar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin" element={<AdminPage />} />
@@ -24,7 +28,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
         {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
-      <CopyRight />
+      {isAdminSubdomain || isAuthSubdomain ? null : <CopyRight />}
       <ThemeSwitcher />
     </div>
   );
