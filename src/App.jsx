@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigationType } from "react-router-dom";
 import NotFoundPage from "./pages/404";
 import { ThemeSwitcher } from "./components/themeSwitcher";
 import NavigationBar from "./components/navigationBar";
@@ -12,6 +12,8 @@ import SignUpPage from "./pages/signUp";
 
 export default function App() {
   const location = useLocation();
+  const navigationType  = useNavigationType()
+  console.log("🚀 ~ App ~ navigationType:", navigationType)
   const isAdminSubdomain = location.pathname.startsWith("/admin");
   const isAuthSubdomain = location.pathname.startsWith("/auth")
 
