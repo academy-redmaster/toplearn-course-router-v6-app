@@ -9,6 +9,7 @@ import AdminPage from "./pages/admin";
 import ContactUsPage from "./pages/contactUs";
 import LoginPage from "./pages/login";
 import SignUpPage from "./pages/signUp";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
         {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
+      <ToastContainer />
       {isAdminSubdomain || isAuthSubdomain ? null : <CopyRight />}
       <ThemeSwitcher />
     </div>
