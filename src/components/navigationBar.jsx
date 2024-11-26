@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -9,11 +9,17 @@ import {
   NavbarItem,
   Button,
 } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import logo from "../assets/image/logo.svg";
+import { useAuth } from "../hook/useAuth";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function NavigationBar() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { userId } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState();
+  const navigate = useNavigate()
 
   const menuItems = [
     {
@@ -37,6 +43,29 @@ export default function NavigationBar() {
       href: "/auth/login",
     },
   ];
+  useEffect(() => {
+    (async () => {
+      if (!userId) {
+        console.log("Invalid User Id");
+        return;
+      }
+      try {
+        const result = await axios.get(
+          `http://localhost:8008/api/users/${userId}`
+        );
+        setUser(result.data);
+      } catch (error) {
+        console.log("🚀 ~ error:", error);
+      }
+    })();
+  }, [userId]);
+
+  const logoutHandler = () => {
+    sessionStorage.removeItem("authToken")
+    localStorage.removeItem("authToken")
+    toast.dark("token removed from session storage")
+    navigate("/auth/login", {replace: true})
+  }
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -63,7 +92,7 @@ export default function NavigationBar() {
             Home
           </Link>
         </NavbarItem>
-        <NavbarItem >
+        <NavbarItem>
           <Link to="/todo" aria-current="page">
             Todo
           </Link>
@@ -80,16 +109,29 @@ export default function NavigationBar() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link to="/auth/login">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="danger" to="/auth/signup" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      {user ? (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <span className="capitalize">{user.userName}-{user.email}</span>
+          </NavbarItem>
+          <NavbarItem>
+            <Button  color="danger" onClick={logoutHandler} variant="flat">
+              Logout
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      ) : (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link to="/auth/login">Login</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} color="danger" to="/auth/signup" variant="flat">
+              Sign Up
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      )}
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
