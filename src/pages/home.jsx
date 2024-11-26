@@ -18,13 +18,13 @@ export default function HomePage() {
       )}
 
       <div className="flex items-center gap-x-6">
-        <Button as={Link} to="" size="lg" color="primary" variant="shadow">
+        <Button as={Link} to="https://github.com/academy-redmaster/toplearn-course-router-v6-app" size="lg" color="primary" variant="shadow">
           Access to Source Code
         </Button>
-        <Button as={Link} to="" size="lg" color="danger" variant="shadow">
+        <Button as={Link} to="https://reactrouter.com/en/6.28.0" size="lg" color="danger" variant="shadow">
           React Router Reference
         </Button>
-        <Button as={Link} to="" size="lg" color="warning" variant="shadow">
+        <Button as={Link} to="http://localhost:8008/api-docs/" size="lg" color="warning" variant="shadow">
           REST API Document
         </Button>
       </div>
