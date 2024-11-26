@@ -8,12 +8,15 @@ import { errorHandler, notFoundHandler } from "./middleware/error/indexx";
 import { swaggerOptions } from "./utils/swaggerOption";
 import { todoRoutes } from "./routes/todos";
 import cors from "cors"
+
 // port server: environment variables
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // Swagger documentation setup
 const app = express();
-app.use(cors())
+
+app.use(cors());
+
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 

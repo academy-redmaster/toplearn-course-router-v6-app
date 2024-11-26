@@ -110,7 +110,7 @@ todoRoutes.get('/:id', getTodoDetailsController);
 // !----------------------------------------------------------------
 /**
  * @swagger
- * /todos/{id}:
+ * /todos/{id}/:
  *   put:
  *     summary: Update a todo by ID
  *     tags: [Todos]
@@ -147,7 +147,7 @@ todoRoutes.get('/:id', getTodoDetailsController);
  *       404:
  *         description: Todo not found
  */
-todoRoutes.put('/:id/edit', updateTodoController);
+todoRoutes.put('/:id', updateTodoController);
 // !----------------------------------------------------------------
 /**
  * @swagger

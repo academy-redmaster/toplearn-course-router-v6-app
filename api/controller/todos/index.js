@@ -4,7 +4,15 @@ import { validationID } from '../../utils/validationID';
 // !----------------------------------------------------------------
 export const fetchTodosController = async (req, res) => {
    try {
-      const todos = await Todo.find({}).populate("owner");
+      const { priority, status } = req.query;
+      const query = {};
+      if (priority) {
+         query.priority = priority;
+      }
+      if (status) {
+         query.status = status;
+      }
+      const todos = await Todo.find(query).populate('owner');
       res.json(todos);
    } catch (error) {
       res.status(500).json({ message: error.message });
@@ -15,7 +23,7 @@ export const fetchTodosDelayController = async (req, res) => {
    try {
       await Bun.sleep(10000);
 
-      const todos = await Todo.find({}).populate("owner");
+      const todos = await Todo.find({}).populate('owner');
       res.json(todos);
    } catch (error) {
       res.status(500).json({ message: error.message });
@@ -25,14 +33,8 @@ export const fetchTodosDelayController = async (req, res) => {
 // !----------------------------------------------------------------
 export const createTodoController = async (req, res) => {
    try {
-      const { title, description, dueDate, priority, owner } = req.body;
-
       const todo = await Todo.create({
-         title,
-         description,
-         dueDate,
-         priority,
-         owner
+         ...req.body
       });
 
       res.status(201).json(todo);
@@ -45,7 +47,7 @@ export const getTodoDetailsController = async (req, res) => {
    const { id } = req.params;
    validationID(id);
    try {
-      const todo = await Todo.findById(id).populate("owner");
+      const todo = await Todo.findById(id).populate('owner');
       if (!todo) {
          return res.status(404).json({ message: 'Todo not found' });
       }
@@ -57,11 +59,11 @@ export const getTodoDetailsController = async (req, res) => {
 // !----------------------------------------------------------------
 export const updateTodoController = async (req, res) => {
    const { id } = req.params;
-   const { title, description, status, dueDate, priority } = req.body;
+   const updates = req.body;
    validationID(id);
 
    try {
-      const todo = await Todo.findByIdAndUpdate(id, { title, description, status, dueDate, priority }, { new: true });
+      const todo = await Todo.findByIdAndUpdate(id, updates, { new: true, runValidators: true });
       if (!todo) {
          return res.status(404).json({ message: 'Todo not found' });
       }
@@ -70,13 +72,18 @@ export const updateTodoController = async (req, res) => {
       res.status(500).json({ message: error.message });
    }
 };
+
 // !----------------------------------------------------------------
 export const markTodoAsCompletedController = async (req, res) => {
    const { id } = req.params;
    validationID(id);
 
    try {
-      const todo = await Todo.findByIdAndUpdate(id, { status: 'completed', isCompleted: true }, { new: true });
+      const todo = await Todo.findByIdAndUpdate(
+         id,
+         { status: 'completed', isCompleted: true, completedAt: new Date() },
+         { new: true, runValidators: true }
+      );
       if (!todo) {
          return res.status(404).json({ message: 'Todo not found' });
       }
@@ -89,13 +96,23 @@ export const markTodoAsCompletedController = async (req, res) => {
 export const archiveTodoController = async (req, res) => {
    const { id } = req.params;
    validationID(id);
+   const todo = await Todo.findById(id);
 
+   if (!todo) {
+      return res.status(404).json({ message: 'Todo not found' });
+   }
+
+   const status = todo.isCompleted;
    try {
-      const todo = await Todo.findByIdAndUpdate(id, { status: 'archived', isArchived: true }, { new: true });
-      if (!todo) {
+      const updatedTodo = await Todo.findByIdAndUpdate(
+         id,
+         { status: 'archived', isArchived: true, isCompleted: status },
+         { new: true }
+      );
+      if (!updatedTodo) {
          return res.status(404).json({ message: 'Todo not found' });
       }
-      res.json(todo);
+      res.json(updatedTodo);
    } catch (error) {
       res.status(500).json({ message: error.message });
    }
@@ -106,19 +123,26 @@ export const unarchiveTodoController = async (req, res) => {
    validationID(id);
 
    try {
-      const todo = await Todo.findByIdAndUpdate(
-         id,
-         { status: 'pending', isArchived: false, isCompleted: false },
-         { new: true }
-      );
+      const todo = await Todo.findById(id);
       if (!todo) {
          return res.status(404).json({ message: 'Todo not found' });
       }
-      res.json(todo);
+      const status = todo.isCompleted ? 'completed' : 'pending';
+      const updatedTodo = await Todo.findByIdAndUpdate(
+         id,
+         {
+            status,
+            isArchived: false,
+            isCompleted: true
+         },
+         { new: true }
+      );
+      res.json(updatedTodo);
    } catch (error) {
       res.status(500).json({ message: error.message });
    }
 };
+
 // !----------------------------------------------------------------
 export const deleteTodoController = async (req, res) => {
    const { id } = req.params;
