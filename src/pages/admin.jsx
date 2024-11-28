@@ -1,7 +1,18 @@
+import { Link, Route, Routes } from "react-router-dom";
+
 export default function AdminPage() {
   return (
-    <div className="min-h-[80vh] w-full flex items-center justify-center">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-6">
       <h1>welcome to AdminPage</h1>
+      <div className="space-x-6">
+        <Link to=".">Home</Link>
+        <Link to="./blog">Blog</Link>
+      </div>
+      <Routes>
+        <Route path="/" element={<h1>Home admin page</h1>} />
+        <Route path="/blog" element={<h1>Blog admin page</h1>} />
+        <Route path="*" element={<h1>NotFound admin page</h1>} />
+      </Routes>
     </div>
   );
 }
