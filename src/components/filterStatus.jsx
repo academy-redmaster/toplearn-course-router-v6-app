@@ -1,6 +1,16 @@
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
+import { useSearchParams } from "react-router-dom";
 
 export default function FilterStaus() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const handleStatus = (key) => {
+    if (key === "clear") {
+      searchParams.delete("status")
+    } else {
+      searchParams.set("status",key)
+    }
+    setSearchParams(searchParams)
+  }
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -10,7 +20,7 @@ export default function FilterStaus() {
           Status
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
+      <DropdownMenu aria-label="Static Actions" onAction={handleStatus}>
         <DropdownItem key="pending">Pending</DropdownItem>
         <DropdownItem key="in_progress">In Progress</DropdownItem>
         <DropdownItem key="completed">Completed</DropdownItem>

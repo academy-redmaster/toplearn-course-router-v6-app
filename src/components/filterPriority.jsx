@@ -1,21 +1,33 @@
-import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
+import { useSearchParams } from "react-router-dom";
 
 export default function FilterPriority() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handlePriority = (key) => {
+    if (key === "clear") {
+      searchParams.delete("priority");
+    } else {
+      searchParams.set("priority", key);
+    }
+    setSearchParams(searchParams);
+  };
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button 
-          variant="bordered" 
-        >
-          Priority
-        </Button>
+        <Button variant="bordered">Priority</Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
+      <DropdownMenu aria-label="Static Actions" onAction={handlePriority}>
         <DropdownItem key="low">Low</DropdownItem>
         <DropdownItem key="medium">medium</DropdownItem>
         <DropdownItem key="high">High</DropdownItem>
         <DropdownItem key="clear" className="text-danger" color="danger">
-         Clear Filter
+          Clear Filter
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
