@@ -77,7 +77,7 @@ export default function TableTodo({ columns, todos }) {
             </Tooltip>
             <Tooltip content="Edit todo">
               <Link
-                to="id/edit"
+                to={`${todo.id}/edit`}
                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
               >
                 <i className="ri-edit-line"></i>
@@ -85,7 +85,7 @@ export default function TableTodo({ columns, todos }) {
             </Tooltip>
             <Tooltip color="success" content="completed todo">
               <Link
-                to="id/complete"
+                to={`${todo.id}/complete`}
                 className="text-lg text-success cursor-pointer active:opacity-50"
               >
                 {todo.isCompleted ? (
@@ -100,7 +100,7 @@ export default function TableTodo({ columns, todos }) {
               content={todo.isArchived ? "UnArchived" : "Archived"}
             >
               <Link
-                to="id/archive"
+                to={`${todo.id}/archive`}
                 className="text-lg text-secondary cursor-pointer active:opacity-50"
               >
                 {todo.isArchived ? (
@@ -112,7 +112,7 @@ export default function TableTodo({ columns, todos }) {
             </Tooltip>
             <Tooltip color="danger" content="Delete todo">
               <Link
-                to=""
+                to={`${todo.id}/delete`}
                 className="text-lg text-danger cursor-pointer active:opacity-50"
               >
                 <i className="ri-delete-bin-5-line"></i>

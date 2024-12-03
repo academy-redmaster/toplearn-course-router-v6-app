@@ -21,6 +21,7 @@ import TodoCreatePage from "./pages/todoCreate";
 import TodoDetailsPage from "./pages/todoDetails";
 import TodoCompletePage from "./pages/todoComplete";
 import TodoArchivePage from "./pages/todoArchive";
+import TodoDeletePage from "./pages/todoDelete";
 
 export default function App() {
   const location = useLocation();
@@ -33,12 +34,13 @@ export default function App() {
     <div className="min-h-screen w-full">
       {isAdminSubdomain || isAuthSubdomain ? null : <NavigationBar />}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/:lang?/" element={<HomePage />} />
         <Route path="todo" element={<TodoLayoutPage />}>
           <Route index element={<TodoIndexPage />} />
           <Route path="create" element={<TodoCreatePage />} />
           <Route path=":id" element={<TodoDetailsPage />} />
           <Route path=":id/edit" element={<TodoCreatePage />} />
+          <Route path=":id/delete" element={<TodoDeletePage />} />
           <Route path=":id/complete" element={<TodoCompletePage />} />
           <Route path=":id/archive" element={<TodoArchivePage />} />
         </Route>
