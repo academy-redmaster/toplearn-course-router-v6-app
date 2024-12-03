@@ -39,7 +39,6 @@ export default function TodoIndexPage() {
       }
     })();
   }, [location.search]);
-  console.log("🚀 ~ TodoIndexPage ~ todos:", todos);
 
   return (
     <div className="space-y-6 py-10">

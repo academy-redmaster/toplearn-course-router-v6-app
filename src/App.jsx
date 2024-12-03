@@ -1,4 +1,5 @@
 import {
+  generatePath,
   Route,
   Routes,
   useLocation,
@@ -36,10 +37,10 @@ export default function App() {
         <Route path="todo" element={<TodoLayoutPage />}>
           <Route index element={<TodoIndexPage />} />
           <Route path="create" element={<TodoCreatePage />} />
-          <Route path="id" element={<TodoDetailsPage />} />
-          <Route path="id/edit"  element={<TodoCreatePage />} />
-          <Route path="id/complete"  element={<TodoCompletePage />} />
-          <Route path="id/archive"  element={<TodoArchivePage />} />
+          <Route path=":id" element={<TodoDetailsPage />} />
+          <Route path=":id/edit" element={<TodoCreatePage />} />
+          <Route path=":id/complete" element={<TodoCompletePage />} />
+          <Route path=":id/archive" element={<TodoArchivePage />} />
         </Route>
         <Route path="concatus" element={<ContactUsPage />} />
         <Route path="auth/login" element={<LoginPage />} />
