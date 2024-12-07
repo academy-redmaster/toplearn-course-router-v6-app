@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function LoginPage() {
@@ -13,7 +13,8 @@ export default function LoginPage() {
   console.log("🚀 ~ SignUpPage ~ formData:", formData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const location = useLocation()
+  console.log("🚀 ~ LoginPage ~ location:", location)
   const navigate = useNavigate();
 
   // handleChange

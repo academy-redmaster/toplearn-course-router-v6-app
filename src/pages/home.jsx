@@ -8,12 +8,17 @@ export default function HomePage() {
   const { lang } = useParams();
   const { theme } = useTheme();
   return (
-    <div className="min-h-[80vh] max-w-7xl mx-auto w-full flex flex-col gap-y-12 items-center justify-center">
-      <div className="flex flex-col items-center justify-between gap-y-6">
+    <div className="min-h-[80vh] max-w-7xl mx-auto w-full flex flex-col gap-y-12 items-center justify-center px-4 lg:p-0">
+      <div className="flex flex-col items-center justify-between gap-y-6 *:text-center">
         <h1 className="font-semibold text-lg">
-          {lang === "fa"
-            ? "به تاپلرن خوش آمدید - سفر شما به سمت یادگیری از اینجا شروع می شود"
-            : "Welcome to TopLearn.com – Your Journey to Learning Starts Here!"}
+          {lang === "fa" ? (
+            <bdo dir="rtl">
+              به ورکشاپ جامع <bdi>React Router</bdi> در <bdi>TopLearn.com</bdi>
+              خوش آمدید – سفر کامل یادگیری شما از همین‌جا آغاز می‌شود!
+            </bdo>
+          ) : (
+            "Welcome to the Ultimate React Router Workshop – Your Complete Learning Journey Starts Here!"
+          )}
         </h1>
       </div>
       {theme === "dark" ? (
@@ -22,7 +27,7 @@ export default function HomePage() {
         <img src={routerLightImage} className="w-full px-8 lg:px-0" alt="" />
       )}
 
-      <div className="flex items-center gap-x-6">
+      <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-6  w-full">
         <Button
           as={Link}
           to="https://github.com/academy-redmaster/toplearn-course-router-v6-app"
