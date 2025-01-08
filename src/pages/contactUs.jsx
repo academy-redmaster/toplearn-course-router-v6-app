@@ -46,16 +46,16 @@ export default function ContactUsPage() {
 
           {theme === "dark" ? (
             <img
-            className="w-52 h-52 object-contain"
-            src={routerDarkImage}
-            alt=""
-          />
+              className="w-52 h-52 object-contain"
+              src={routerDarkImage}
+              alt=""
+            />
           ) : (
             <img
-            className="w-52 h-52 object-contain"
-            src={routerLightImage}
-            alt=""
-          />
+              className="w-52 h-52 object-contain"
+              src={routerLightImage}
+              alt=""
+            />
           )}
           <Button isIconOnly color="danger" variant="light">
             <i className="ri-equal-line text-4xl"></i>

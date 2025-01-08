@@ -10,9 +10,14 @@ import {
   Button,
 } from "@nextui-org/react";
 import { getLocalTimeZone, today } from "@internationalized/date";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  useLocation,
+  useMatch,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import imageUrl from "../assets/image/coffee.png";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hook/useAuth";
 import moment from "moment";
 import axios from "axios";
@@ -24,6 +29,10 @@ export default function TodoCreatePage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // useMatch
+  const match = useMatch("todo/:id/edits");
+  console.log("🚀 ~ TodoIndexPage ~ match:", match);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -57,7 +66,7 @@ export default function TodoCreatePage() {
         setIsLoading(false);
       }
     }
-  }, [location.pathname, useId, id]);
+  }, [location.pathname, userId, id]);
   // ====================================
   // handle input and textarea value
   // ====================================

@@ -30,7 +30,10 @@ export default function SignUpPage() {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:8008/api/users/register", formData);
+      const response = await axios.post(
+        "http://localhost:8008/api/users/register",
+        formData
+      );
       console.log("🚀 ~ handleSubmit ~ response:", response.data);
       toast.success("user Registered successfully");
       navigate("/auth/login", { replace: true });

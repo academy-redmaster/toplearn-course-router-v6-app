@@ -45,7 +45,7 @@ export default function App() {
         <Route
           path="todo"
           element={
-            <ProtectedRoute >
+            <ProtectedRoute>
               <TodoLayoutPage />
             </ProtectedRoute>
           }

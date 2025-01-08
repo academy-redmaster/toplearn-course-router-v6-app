@@ -7,6 +7,7 @@ import {
   Chip,
 } from "@nextui-org/react";
 import moment from "moment/moment";
+import PropTypes from 'prop-types';
 
 export default function CantactCard({ cardDetails }) {
   return (
@@ -40,3 +41,13 @@ export default function CantactCard({ cardDetails }) {
     </Card>
   );
 }
+
+CantactCard.propTypes = {
+  cardDetails: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
+    profilePhoto: PropTypes.string.isRequired,
+    isAdmin: PropTypes.bool.isRequired
+  }).isRequired
+};

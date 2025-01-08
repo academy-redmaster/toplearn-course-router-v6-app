@@ -12,7 +12,9 @@ export default function TodoLayoutPage() {
         <div className="flex items-center gap-x-4">
           <FilterStaus />
           <FilterPriority />
-          <Button as={Link} to="create" color="secondary" variant="shadow">New Todo</Button>
+          <Button as={Link} to="create" color="secondary" variant="shadow">
+            New Todo
+          </Button>
         </div>
       </div>
       <Outlet />

@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  useHref,
+  useNavigate,
+  useParams,
+  useResolvedPath,
+} from "react-router-dom";
 import CustomLoader from "../components/customLoader";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Avatar, Button, Chip } from "@nextui-org/react";
@@ -12,6 +17,12 @@ export default function TodoDetailsPage() {
   const [loading, setLoading] = useState(false);
   const [todo, setTodo] = useState([]);
   const navigate = useNavigate();
+
+  const href = useHref("blog");
+  console.log("🚀 ~ TodoDetailsPage ~ href:", href);
+
+  const resolved = useResolvedPath("#comment");
+  console.log("🚀 ~ TodoDetailsPage ~ resolved:", resolved);
 
   // get data
   useEffect(() => {
@@ -30,7 +41,6 @@ export default function TodoDetailsPage() {
       }
     })();
   }, [id]);
-  console.log("🚀 ~ TodoDetailsPage ~ todo:", todo);
 
   if (loading) return <CustomLoader />;
   return (

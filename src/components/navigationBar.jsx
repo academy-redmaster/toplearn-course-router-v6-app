@@ -9,7 +9,7 @@ import {
   NavbarItem,
   Button,
 } from "@nextui-org/react";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/image/logo.svg";
 import { useAuth } from "../hook/useAuth";
 import axios from "axios";
@@ -19,7 +19,7 @@ export default function NavigationBar() {
   const { userId } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const menuItems = [
     {
@@ -61,11 +61,11 @@ export default function NavigationBar() {
   }, [userId]);
 
   const logoutHandler = () => {
-    sessionStorage.removeItem("authToken")
-    localStorage.removeItem("authToken")
-    toast.dark("token removed from session storage")
-    navigate("/auth/login", {replace: true})
-  }
+    sessionStorage.removeItem("authToken");
+    localStorage.removeItem("authToken");
+    toast.dark("token removed from session storage");
+    navigate("/auth/login", { replace: true });
+  };
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -112,10 +112,12 @@ export default function NavigationBar() {
       {user ? (
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
-            <span className="capitalize">{user.userName}-{user.email}</span>
+            <span className="capitalize">
+              {user.userName}-{user.email}
+            </span>
           </NavbarItem>
           <NavbarItem>
-            <Button  color="danger" onClick={logoutHandler} variant="flat">
+            <Button color="danger" onClick={logoutHandler} variant="flat">
               Logout
             </Button>
           </NavbarItem>

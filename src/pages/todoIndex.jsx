@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useMatch } from "react-router-dom";
 import { useAuth } from "../hook/useAuth";
 import { Chip } from "@nextui-org/chip";
 import CustomLoader from "../components/customLoader";
@@ -19,7 +19,13 @@ export default function TodoIndexPage() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  console.log("🚀 ~ TodoIndexPage ~ error:", error);
   const location = useLocation();
+
+  // useMatch
+
+  const match = useMatch("todo");
+  console.log("🚀 ~ TodoIndexPage ~ match:", match);
 
   // get todos
   useEffect(() => {
@@ -50,7 +56,11 @@ export default function TodoIndexPage() {
           {todos.length}
         </Chip>
       </div>
-      {loading ? <CustomLoader /> : <TableTodo columns={columns} todos={todos} />}
+      {loading ? (
+        <CustomLoader />
+      ) : (
+        <TableTodo columns={columns} todos={todos} />
+      )}
     </div>
   );
 }

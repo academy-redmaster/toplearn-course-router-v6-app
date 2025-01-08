@@ -4,7 +4,7 @@ export default function CopyRight() {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto border-t py-6 px-4 xl:px-0 *:text-sm gap-y-5">
       <div className="flex flex-wrap items-center gap-4">
-        <Button isIconOnly variant="faded" >
+        <Button isIconOnly variant="faded">
           <i className="ri-instagram-line text-2xl"></i>
         </Button>
         <Button isIconOnly variant="faded">

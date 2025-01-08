@@ -9,10 +9,23 @@ import {
   User,
   Chip,
   Tooltip,
-  getKeyValue,
 } from "@nextui-org/react";
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
+
+// type
+
+// import PropTypes from "prop-types";
+
+// TableTodo.propTypes = {
+//   columns: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       uid: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+//   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+// };
 
 const statusColorMap = {
   pending: "secondary",

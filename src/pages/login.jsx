@@ -13,8 +13,8 @@ export default function LoginPage() {
   console.log("🚀 ~ SignUpPage ~ formData:", formData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const location = useLocation()
-  console.log("🚀 ~ LoginPage ~ location:", location)
+  const location = useLocation();
+  console.log("🚀 ~ LoginPage ~ location:", location);
   const navigate = useNavigate();
 
   // handleChange
@@ -30,7 +30,10 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:8008/api/users/login", formData);
+      const response = await axios.post(
+        "http://localhost:8008/api/users/login",
+        formData
+      );
       const token = response.data.token;
 
       if (token) {
