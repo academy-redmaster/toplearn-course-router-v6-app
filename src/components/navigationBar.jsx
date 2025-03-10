@@ -8,7 +8,7 @@ import {
   NavbarContent,
   NavbarItem,
   Button,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/image/logo.svg";
 import { useAuth } from "../hook/useAuth";

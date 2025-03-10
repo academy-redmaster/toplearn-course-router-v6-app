@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { BrowserRouter } from "react-router-dom";
 
@@ -10,10 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <NextUIProvider>
+    <HeroUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="dark">
         <App />
       </NextThemesProvider>
-    </NextUIProvider>
+    </HeroUIProvider>
   </BrowserRouter>
 );

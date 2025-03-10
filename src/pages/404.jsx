@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import imageUrl from "../assets/image/404.svg";
 import { useNavigate } from "react-router-dom";
 export default function NotFoundPage() {

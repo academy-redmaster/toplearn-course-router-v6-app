@@ -1,5 +1,5 @@
-import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/react";
+import { Button } from "@heroui/button";
+import { Input } from "@heroui/react";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";

@@ -9,7 +9,7 @@ import {
   User,
   Chip,
   Tooltip,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
 

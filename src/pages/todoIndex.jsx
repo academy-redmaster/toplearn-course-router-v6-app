@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useMatch } from "react-router-dom";
 import { useAuth } from "../hook/useAuth";
-import { Chip } from "@nextui-org/chip";
+import { Chip } from "@heroui/chip";
 import CustomLoader from "../components/customLoader";
 import TableTodo from "../components/tableTodo";
 
@@ -35,7 +35,7 @@ export default function TodoIndexPage() {
       try {
         const queryParams = location.search;
         const response = await axios.get(
-          `http://localhost:8008/api/todos/${queryParams}`
+          `http://localhost:8008/api/todos${queryParams}`
         );
         setTodos(response.data);
       } catch (error) {

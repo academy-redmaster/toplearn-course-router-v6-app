@@ -7,8 +7,8 @@ import {
   useResolvedPath,
 } from "react-router-dom";
 import CustomLoader from "../components/customLoader";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
-import { Avatar, Button, Chip } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { Avatar, Button, Chip } from "@heroui/react";
 import moment from "moment";
 import { toast } from "react-toastify";
 

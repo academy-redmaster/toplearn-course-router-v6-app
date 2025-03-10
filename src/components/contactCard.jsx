@@ -5,7 +5,7 @@ import {
   Image,
   CardFooter,
   Chip,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import moment from "moment/moment";
 import PropTypes from 'prop-types';
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import CustomLoader from "../components/customLoader";
 import CantactCard from "../components/contactCard";
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import routerLightImage from "../assets/image/react-routr-light.svg";
 import routerDarkImage from "../assets/image/react-router-dark.svg";
 import { useTheme } from "next-themes";

@@ -1,7 +1,7 @@
 import { useTheme } from "next-themes";
 import routerLightImage from "../assets/image/react-routr-light.svg";
 import routerDarkImage from "../assets/image/react-router-dark.svg";
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import { Link, useParams } from "react-router-dom";
 
 export default function HomePage() {
